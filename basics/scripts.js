@@ -56,7 +56,10 @@ gomszab.play();gomszab.play();gomszab.play();gomszab.play();gomszab.play();gomsz
 
 console.log(gomszab.getTierLevel())
 
+//Hazi
 
+
+//Gezas
 
 class Person{
     constructor(nev){
@@ -80,6 +83,42 @@ console.log(geza_nev.getName());
 
 
 
+//Allatos
+
+
+class Animal{
+    constructor(allatnev){
+        this.allatnev=allatnev;
+    }
+    kommunikacio() {
+        console.log(`A/Az ${this.allatnev} tud hangot kiadni.`);
+    }
+}
+class Mammal extends Animal{
+    constructor(allatnev) {
+        super(allatnev);
+    }
+    mozog(){
+        console.log(`A(z) ${this.allatnev} jár.`);
+    }
+}
+class Bird extends Animal{
+    constructor(allatnev) {
+       super(allatnev);
+    }
+    mozog(){
+        console.log(`A(z) ${this.allatnev} repül`);
+    }
+}
 
 
 
+
+const madar = new Bird("Galamb");
+const nagytestu = new Mammal("Teknős");
+
+madar.kommunikacio();
+madar.mozog();
+
+nagytestu.kommunikacio();
+nagytestu.mozog();
