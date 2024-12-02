@@ -77,9 +77,12 @@ class Student extends Person{
         super(nev)
         this.school=school
     }
+    getMinden(){
+        return this.school}
 }
-const geza_nev =new Student("Bolyai","Géza");
+const geza_nev_suli =new Student("Bolyai","Géza");
 console.log(geza_nev.getName());
+console.log(geza_nev.getMinden())
 
 
 
