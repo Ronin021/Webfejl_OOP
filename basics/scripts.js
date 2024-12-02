@@ -57,3 +57,29 @@ gomszab.play();gomszab.play();gomszab.play();gomszab.play();gomszab.play();gomsz
 console.log(gomszab.getTierLevel())
 
 
+
+class Person{
+    constructor(nev){
+        this.nev=nev
+
+    }
+    getName(){
+        return this.nev}
+
+    }
+
+
+class Student extends Person{
+    constructor(school, nev){
+        super(nev)
+        this.school=school
+    }
+}
+const geza_nev =new Student("Bolyai","Géza");
+console.log(geza_nev.getName());
+
+
+
+
+
+
