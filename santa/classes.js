@@ -18,7 +18,7 @@ class Factory{
 
    }
    
-   // TODO 5
+   
    class Companion{
     constructor(id, keresztnev, vezeteknev, reszleg){//Ez kell mert e nélkül nem lehet értelmezni a példát(Mármint a példányok)
         this.id= id;//Példány egy tulajdosága lesz az id<---Itt id amúgy ha másról van szó akkkor azt. Paraméter Mindig értéket ad át
@@ -32,7 +32,11 @@ class Factory{
     }
 
     getName(){//Nem kell paraméter mert látja a példány paramétereit
+        return this.vezeteknev +" "+ this.keresztnev//Visszaadja a kersztenevet meg a vezeteknevet
 
+    }
+    addProduct(product){
+        this.productList.push(product)
 
     }
    }
