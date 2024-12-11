@@ -68,10 +68,7 @@ class Companion {
         // Termék hozzáadása a listához
         this.products.push(product);
 
-        // Ha nem betöltéskor adjuk hozzá, frissítést kér
-        if (!addOnLoad) {
-            refresh(this); 
-        }
+   
     }
 
     // Teljes név lekérése (vezetéknév + keresztnév)
