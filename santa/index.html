@@ -6,7 +6,7 @@
     <title>Santa factory</title>
     <style>
         table,tr,td,th{
-            border: 2px, solid, black;
+            border: 2px solid black;
             border-collapse: collapse;
         }
 
@@ -25,6 +25,10 @@
         #product{
             width: fit-content;
             border: 5px solid rgb(84, 121, 190);
+        }
+        #area {
+            width: fit-content;
+            border: 5px solid rgb(190, 84, 84);
         }
 
         .row-container{
@@ -68,20 +72,28 @@
             <label for="clastname">Vezetéknév</label><br>
             <input id="clastname" name="clastname"><br><br>
     
-            <label for="carea">Részleg</label><br>
-            <input id="carea" name="carea"><br><br>
-    
+            <label for="area_class">Részleg</label><br>
+            <select id="area_class" name="area_class">
+                <option></option>
+            </select>
+
             <button>Kompánia hozzáadása</button>
         </form>
         <form id="product">
-            <label for="companionlist">Manó</label><br>
-            <select id="companionlist">
+            <label for="companionLista">Manó</label><br>
+            <select id="companionLista">
                 <option></option>
-            </select> <br><br>
+            </select>
+            <br><br>
     
             <label for="productname">Product név</label><br>
             <input id="productname" name="productname"><br><br>
             <button>Produktum hozzáadása a kompániához</button>
+        </form>
+        <form id="area">
+            <label for="areaName">Részleg</label><br>
+            <input id="areaName" name="areaName"><br><br>
+            <button>Részleg hozzáadása</button>
         </form>
     </div>
     

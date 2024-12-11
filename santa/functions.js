@@ -7,12 +7,23 @@ function createRow(companion){
     const table = document.getElementById('companions');
     const tbody = table.querySelector('tbody');
     const tableRow = document.createElement('tr');
+
+
+    tableRow.id = companion.id;
     tbody.appendChild(tableRow);
 
-   // TODO 7
+
+
+
+    const name = createCell(tableRow);
+    const area = createCell(tableRow);
+
+    name.innerHTML = companion.teljesnev;
+    area.innerHTML = companion.area;
 
     const action = createCell(tableRow)
     const button = document.createElement('button');
+
     button.innerHTML = 'Megtekint';
     action.appendChild(button)
     button.addEventListener('click', checkEventListener)
@@ -35,12 +46,13 @@ function createCell(parentElement){
  * Append a new companion to the selector
  * 
  */
-function appendToSelector(){
+function Appendchild(id, value){
     const productForm = document.getElementById('product')
-    const selector = productForm.querySelector('#companionlist');
+    const selector = productForm.querySelector('#companionLista');
 
     const option = document.createElement('option');
-    // TODO 11.
+    option.value = id;
+    option.innerHTML = value;
 
     selector.appendChild(option);
 }
@@ -52,16 +64,25 @@ function appendToSelector(){
  * 
  * @param {Companion} companion 
  */
-function refreshProductList(companion){ //TODO
+function refresh(companion){
 
     const companionName = document.getElementById('companion_name');
-    // TODO 10
     companionName.style.display = 'block';
+    companionName.innerHTML = companion.teljesnev;
+
     const productTable = document.getElementById('products');
     productTable.style.display = 'table';
+
     const productTableBody = productTable.querySelector('tbody')
     productTableBody.innerHTML = '';
-    // TODO 10
+
+    for (const product of companion.products) {
+        const productRow = document.createElement('tr');
+        const productName = createCell(productRow);
+
+        productName.innerHTML = product;
+        productTableBody.appendChild(productRow);
+    }
 }
 
 /**
@@ -70,14 +91,15 @@ function refreshProductList(companion){ //TODO
  * 
  * @param {HTMLFormElement} form 
  */
-function addCompanion(form){ //TODO 
-    const firstName =form.querySelector('#cfirstname')
+function addCompanion(form){
+    const firstname =form.querySelector('#cfirstname')
     const lastname =form.querySelector('#clastname')
-    const area = form.querySelector('#carea')
-    const firstNameValue = firstName.value;
+    const area = form.querySelector('#area_class')
+    const firstnameValue = firstname.value;
     const lastNameValue = lastname.value;
     const areaValue = area.value;
-    // TODO 6
+    const newCompanion = new Companion(factory.newId(), firstnameValue, lastNameValue, areaValue);
+    factory.addCompanion(newCompanion);
 }
 
 /**
@@ -87,10 +109,16 @@ function addCompanion(form){ //TODO
  * @param {HTMLFormElement} form 
  */
 
-function addProductForm(form, factory){ // TODO
-    const selector =form.querySelector('#companionlist')
+function addProductForm(form){
+    const selector =form.querySelector('#companionLista')
     const productName = form.querySelector('#productname')
     const companionId = selector.value;
+    if (companionId === '') {
+        return;
+    }
     const product = productName.value;
-    // 12
+
+    const companion = factory.getCompanion(companionId);
+    companion.addProduct(product);
+    form.reset();
 }
