@@ -75,3 +75,35 @@ for(let i = 0; i< array.length; i++){
 
 }
 init()
+
+
+
+
+class FormControllerDeCsakNevbenController{
+    #form
+    constructor(form){
+
+        this.#form = form
+
+    }
+
+    #GetInputByID(id){
+        return this.#form.querySelector('#' + id)
+    }
+
+    get lastname(){
+        const getter = this.#GetInputByID('lastname')
+        return getter.value;
+    }
+
+    get firstname1(){
+        const getter = this.#GetInputByID('firstname1')
+        return getter.value;
+    }
+
+    get firstname2(){
+        const getter = this.#GetInputByID('firstname2')
+        return getter.value;
+    }
+
+}
