@@ -28,7 +28,7 @@ constructor(obj){
 }
    render(parentElement){
    const sor = document.createElement('tr')
-    parentElement.appendChild(sor)
+   parentElement.appendChild(sor)
     
 
     const td3 = document.createElement('td')
@@ -61,6 +61,10 @@ constructor(obj){
 //2. lépés
 function init() {
     
+const form = document.getElementById('form')
+
+
+
 for(let i = 0; i< array.length; i++){
     const pers = new Person(array[i])
 
@@ -70,11 +74,25 @@ for(let i = 0; i< array.length; i++){
 
 }
 
+    const controller = new FormControllerDeCsakNevbenController(form)
 
+    form.addEventListener('submit', function(e){
+        e.preventDefault()
+        const obj = {
+            firstname1: controller.firstname1,
+            firstname2: controller.firstname2,
+            lastname: controller.lastname,
+
+
+        }
+            const pers = new Person(obj)
+            pers.render(document.getElementById('tbodyId'))
+
+    })
 
 
 }
-init()
+
 
 
 
@@ -106,4 +124,8 @@ class FormControllerDeCsakNevbenController{
         return getter.value;
     }
 
+
+
 }
+
+init()
