@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>Vezetéknév</td>
+                <td colspan="2">Keresztnév</td>
+            </tr>
+        </thead>
+        <tbody id="tbodyId">
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <form id="form" action="/">
+
+        <div class="field">
+
+            <label for="lastname">Vezetéknév</label><br>
+
+            <input name="lastname" id="lastname"><br>
+
+            <div class="error"></div>
+
+        </div>
+        <br><br>
+        <div class="field">
+
+            <label for="firstname1">Keresztnév1</label><br>
+
+            <input name="firstname1" id="firstname1"><br>
+
+            <div class="error"></div>
+
+        </div>
+        <br><br>
+        <div class="field">
+
+            <label for="firstname2">Keresztnév2</label><br>
+
+            <input name="firstname2" id="firstname2"><br>
+
+            <div class="error"></div>
+
+        </div>
+        <br><br>
+
+        <button>Feltölt</button>
+
+    </form>
+    <script src="scripts.js"></script>
+</body>
+</html>
