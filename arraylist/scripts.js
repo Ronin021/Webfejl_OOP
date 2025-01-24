@@ -87,3 +87,11 @@ console.log(list.Contains(nev1)); // true
 console.log(list.Contains(nev2)); // true
 console.log(list.Contains(szam1)); // true
 console.log(list.Contains(szam2)); // false
+
+class ArrayHtmlElement extends HTMLElement{
+    constructor(){
+        super()
+    }
+}
+
+customElements
