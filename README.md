@@ -1,2 +1,2 @@
 # Webfejl-OOP
-Ennek a megcsinálásakor ez meg lett csinálva \(T)/ 
+Ennek a megcsinálásakor ez meg lett csinálva \\(T)/ 
