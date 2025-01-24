@@ -89,9 +89,43 @@ console.log(list.Contains(szam1)); // true
 console.log(list.Contains(szam2)); // false
 
 class ArrayHtmlElement extends HTMLElement{
+    #tbody
     constructor(){
         super()
     }
+
+    connectedCallback(){
+        const table = document.createElement('table')
+        const thead = document.createElement('thead')
+        this.#tbody = document.createElement('tbody')
+
+        this.appendChild(table)
+        table.appendChild(thead)
+        table.appendChild(this.#tbody)
+
+
+    }
+/**
+ * 
+ * @param {{nev:String, eletkor: Number}} 
+ */
+AddPersonRow(param){
+
+    const sor = document.createElement('tr')
+    const nev = document.createElement('td')
+    const eletkor = document.createElement('td')
+
+    this.#tbody.appendChild(sor)
+    nev.textContent = param.nev
+    eletkor.textContent = param.eletkor.toString()
+    sor.appendChild(nev)
+    sor.appendChild(eletkor)
+}
 }
 
-customElements
+
+customElements.define("array-table", ArrayHtmlElement)
+const tombhtml = new ArrayHtmlElement()
+document.body.appendChild(tombhtml)
+tombhtml.AddPersonRow({nev: 'Valami', eletkor: 32})
+
