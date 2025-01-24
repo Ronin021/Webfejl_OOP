@@ -43,10 +43,10 @@ class ArrayList {
 
         // Az index alapján elérhetővé tesszük az elemet a példányon keresztül
         Object.defineProperty(this, index, {
-            get: function () {
+            get: () => {
                 return this.#state[index]; // Az elem elérése
             },
-            set: function (value) {
+            set:  (value) => {
                 this.#state[index] = value; // Az elem módosítása
             },
             enumerable: true // Az elem felsorolható legyen
