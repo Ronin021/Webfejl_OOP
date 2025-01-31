@@ -1,6 +1,6 @@
 
 /**
- * @typedef{nev: String, eletkor: Number} Person
+ * @typedef {{nev: String, eletkor: Number}} Person
  * @callback UpdateCallback
  * @param {Person[]} persons
  * @returns {void}
@@ -30,6 +30,7 @@ class Datamanager{
  */
  setUpdateCallback(Callback) {
         this.#Updatecallback = Callback;
+        this.#Updatecallback(this.#array)
     }
     
 
@@ -74,4 +75,40 @@ class Datamanager{
 
 class Datatable{
 
+    /**
+     * 
+     * @param {Datamanager} datamanager 
+     */
+    constructor(datamanager){
+        const table = document.createElement('table')
+        const thead = document.createElement('thead')
+        const tbody = document.createElement('tbody')
+
+        document.body.appendChild(table)
+        table.appendChild(thead)
+        table.appendChild(tbody)
+
+        
+
+        datamanager.setUpdateCallback((persons) =>{
+            tbody.innerHTML = ''
+            for(const person of persons){
+                const row =document.createElement('tr')
+                tbody.appendChild(row)
+
+                const cella1 = document.createElement('td')
+                row.appendChild(cella1)
+                cella1.innerHTML = person.name
+
+                const cella2 = document.createElement('td')
+                row.appendChild(cella2)
+                cella2.innerHTML = person.age
+
+        }});
+    
+    }
+
 }
+
+const adat = new Datamanager([{nev: 'Feri', eletkor: '17'},{nev: 'Géza',eletkor: '17'},{nev:'Józsi', eletkor: '16'}]);
+const table = new Datatable(adat);
