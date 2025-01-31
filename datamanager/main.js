@@ -20,16 +20,16 @@ class Datamanager{
  * @param {Person[]} array 
  */
     constructor(array = []) {
-        this.#array = [];
+        this.#array = array;
      this.UpdateCallback = () =>{}   
     }
 
 /**
  * 
- * @param {Callback} Callback 
+ * @param {UpdateCallback} callback 
  */
- setUpdateCallback(Callback) {
-        this.#Updatecallback = Callback;
+ setUpdateCallback(callback = []) {
+        this.#Updatecallback = callback;
         this.#Updatecallback(this.#array)
     }
     
@@ -37,8 +37,8 @@ class Datamanager{
     add(Person){
         this.#array.push({Person})
 
-        this.#Updatecallback = this.#array
-
+        this.#Updatecallback(this.#array
+        ) 
     }
 
     filterage(age){
@@ -110,5 +110,7 @@ class Datatable{
 
 }
 
-const adat = new Datamanager([{nev: 'Feri', eletkor: '17'},{nev: 'Géza',eletkor: '17'},{nev:'Józsi', eletkor: '16'}]);
+const adat = new Datamanager([{nev: 'Feri', eletkor: 17},{nev: 'Géza',eletkor: 17},{nev:'Józsi', eletkor: 16}]);
 const table = new Datatable(adat);
+
+const input = document.createElement('input')
