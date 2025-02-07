@@ -71,7 +71,28 @@ class Datamanager {
         }
         this.#Updatecallback(nameresult); // Frissítjük a táblázatot a szűrt eredményekkel
     }
+    /**
+     * @param {function (Person):Boolean} 
+        
+    
+     */
+    filter(callback){
+        const result = [];
+
+        for (const elem of this.#array) {
+            if (callback(elem)) {
+
+                
+                result.push(elem); // Csak azokat az elemeket tároljuk, amelyek megfelelnek a feltételnek
+            }
+        }
+        this.#Updatecallback(result); // Frissítjük a táblázatot a szűrt eredményekkel
+   
+
+
+    }
 }
+
 
 class Datatable {
     /**
@@ -142,5 +163,62 @@ nameInput.addEventListener(`input`, () => {
 // Kor input eseményfigyelője – szűrés az életkor alapján
 ageInput.addEventListener(`input`, () => {
     const searchNum = Number(ageInput.value); // A beírt értéket számmá alakítjuk
-    dataManager.filterage(searchNum);
+    //dataManager.filterage(searchNum);
+    dataManager.filter((elem) => {
+        return elem.eletkor === searchNum
+    })
+
 });
+
+
+
+//02.07-ei Óra innentől
+
+const input_de_uj= document.createElement("input")
+document.body.appendChild(input_de_uj)
+input_de_uj.type = "file"
+input_de_uj.addEventListener('change', function(e){
+
+const kicsifile = e.target.files[0]
+
+const reader = new FileReader()
+
+reader.readAsText(kicsifile)
+
+reader.onload= (e) =>{
+
+    //e.currentTarget
+
+    const fileContent = reader.result
+    console.log(fileContent)
+
+    const splitteles = fileContent.split("\n")
+
+    for(const splitting of splitteles){
+
+       const split_sequence = splitting.split(";")
+
+        const pers = {
+            nev:split_sequence[0],
+            eletkor:Number(split_sequence[1])
+
+
+
+        }
+
+        dataManager.add(pers)
+
+    }
+
+    
+}
+
+})
+
+
+
+
+
+
+
+

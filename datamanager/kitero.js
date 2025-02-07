@@ -49,5 +49,7 @@ const obj = {}
             return szam1 * a + szam2
         }) 
         console.log(res4)
-
-    }
+        
+    } 
+    
+theFunction()
