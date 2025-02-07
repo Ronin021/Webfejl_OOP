@@ -42,20 +42,6 @@ class Datamanager {
         this.#Updatecallback(this.#array); // Frissíti a táblázatot
     }
 
-    /**
-     * Életkor alapján szűri a személyeket és frissíti a táblázatot
-     * @param {number} age 
-     */
-    filterage(age) {
-        const result = [];
-
-        for (const elem of this.#array) {
-            if (elem.eletkor === age) {
-                result.push(elem); // Csak azokat az elemeket tároljuk, amelyek megfelelnek a feltételnek
-            }
-        }
-        this.#Updatecallback(result); // Frissítjük a táblázatot a szűrt eredményekkel
-    }
 
     /**
      * Név alapján szűri a személyeket és frissíti a táblázatot
@@ -87,10 +73,42 @@ class Datamanager {
             }
         }
         this.#Updatecallback(result); // Frissítjük a táblázatot a szűrt eredményekkel
-   
+
+    }
+
+
+    orderByAge(){
+        const result = []
+        for(elem of this.#array ){
+
+            result.push(elem)
+
+        }
+
+        for (let i=0; i< result.length - 1; i++){
+            for (let j = i + 1; j< result.length - 1; j++){
+                if(result[i].eletkor < result[j].eletkor){
+                    const tmp = result
+                    result[i] = result[j]
+                    result[j]=tmp
+                }
+            }
+
+        }
+        
+        this.#Updatecallback(result)
+
+    }
+
+    orderByName(){
+
 
 
     }
+
+
+
+
 }
 
 
