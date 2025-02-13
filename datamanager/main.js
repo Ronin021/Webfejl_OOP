@@ -13,7 +13,7 @@ class Datamanager {
     /**
      * @type {UpdateCallback} - Privát callback függvény, amelyet a táblázat frissítésére használunk
      */
-    #Updatecallback;
+    #updatecallback;
 
     /**
      * Konstruktor, amely egy tömböt fogad és beállítja az alapértékeket
@@ -21,7 +21,7 @@ class Datamanager {
      */
     constructor(array = []) {
         this.#array = array;
-        this.#Updatecallback = () => {}; // Kezdetben üres függvényként definiáljuk
+        this.#updatecallback = () => {}; // Kezdetben üres függvényként definiáljuk
     }
 
     /**
@@ -29,8 +29,8 @@ class Datamanager {
      * @param {UpdateCallback} callback 
      */
     setUpdateCallback(callback = () => {}) {
-        this.#Updatecallback = callback;
-        this.#Updatecallback(this.#array); // Azonnali frissítés az aktuális adatokkal
+        this.#updatecallback = callback;
+        this.#updatecallback(this.#array); // Azonnali frissítés az aktuális adatokkal
     }
 
     /**
@@ -39,7 +39,7 @@ class Datamanager {
      */
     add(Person) {
         this.#array.push(Person); // Hozzáadja az új elemet a tömbhöz
-        this.#Updatecallback(this.#array); // Frissíti a táblázatot
+        this.#updatecallback(this.#array); // Frissíti a táblázatot
     }
 
 
@@ -55,7 +55,7 @@ class Datamanager {
                 nameresult.push(elem); // Azokat az elemeket tároljuk, amelyek neve tartalmazza a keresett szót
             }
         }
-        this.#Updatecallback(nameresult); // Frissítjük a táblázatot a szűrt eredményekkel
+        this.#updatecallback(nameresult); // Frissítjük a táblázatot a szűrt eredményekkel
     }
     /**
      * @param {function (Person):Boolean} 
@@ -72,44 +72,33 @@ class Datamanager {
                 result.push(elem); // Csak azokat az elemeket tároljuk, amelyek megfelelnek a feltételnek
             }
         }
-        this.#Updatecallback(result); // Frissítjük a táblázatot a szűrt eredményekkel
+        this.#updatecallback(result); // Frissítjük a táblázatot a szűrt eredményekkel
 
     }
 
 
-    orderByAge(){
+    orderBy(Callbackcompare){
         const result = []
-        for(elem of this.#array ){
 
-            result.push(elem)
-
+        for(const j of this.#array){
+            result.push(j)
         }
+        for(let j = 0; j < result.length - 1; j++){
+            for(let k = j + 1; k < result.length; k++){
+                if(Callbackcompare(result[j], result[k]) > 0){
+                    const tmp = result[j];
 
-        for (let i=0; i< result.length - 1; i++){
-            for (let j = i + 1; j< result.length - 1; j++){
-                if(result[i].eletkor < result[j].eletkor){
-                    const tmp = result
-                    result[i] = result[j]
-                    result[j]=tmp
+
+                    result[j] = result[k];
+                    result[k] = tmp;
                 }
             }
-
+               this.#updatecallback(result);
+ }
         }
-        
-        this.#Updatecallback(result)
-
-    }
-
-    orderByName(){
-
-
-
     }
 
 
-
-
-}
 
 
 class Datatable {
@@ -121,6 +110,21 @@ class Datatable {
         const table = document.createElement('table'); // Táblázat létrehozása
         const thead = document.createElement('thead'); // Táblázat fejléc
         const tbody = document.createElement('tbody'); // Táblázat törzs
+        const headerRow = document.createElement('tr');
+        thead.appendChild(headerRow);
+
+        const thName = document.createElement('th');
+        thName.innerHTML = 'Név';
+        headerRow.appendChild(thName);
+
+        dataManager.orderBy((a, b) => a.nev.localeCompare(b.nev));
+
+        const thAge = document.createElement('th');
+        thAge.innerHTML = 'Életkor';
+        headerRow.appendChild(thAge);
+
+        dataManager.orderBy((a, b) => b.eletkor - a.eletkor);
+
 
         document.body.appendChild(table); // Táblázat hozzáadása az oldalhoz
         table.appendChild(thead); // Fejléc hozzáadása
