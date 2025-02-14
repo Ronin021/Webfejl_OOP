@@ -47,7 +47,8 @@ const array = [
 const solutionArea = new SolutionArea('solution')
 
 const managerArray = []
-for(const elem of array){ //Az objektumok alapján példányosítjuk a cardokat
+for(const elem of array){ 
+    //Az objektumok alapján példányosítjuk a cardokat
     const card = new Card(elem.text, elem.right)
     managerArray.push(card)
 }
