@@ -11,14 +11,21 @@ class Area{
     }
 
     /**
-     * 
+     * @param {Manager} manager
      * @param {string} cssclass beállítja az adott terület css osztályát
      */
-    constructor(cssclass){
+    constructor(cssclass, manager){
         const container = this.#getcontainer()
         this.#div = document.createElement('div')
         this.#div.className = cssclass
         container.appendChild(this.#div)
+        manager.setFinishCallback((eredmeny)=>{
+            container.innerHTML = ""
+            const div = document.createElement('div')
+            div.className = 'result'
+            div.textContent = eredmeny
+            container.appendChild(div)
+        })
     }
 
     /**
@@ -41,20 +48,54 @@ class Area{
 
 }
 
-/**
- * Ez fogja tartalmazni a paklikat(mindig egy darab kártyát jelenít meg)
- */
 
 class DeckArea extends Area{
-    constructor(cssClass){
-        super(cssClass)
+    
+/**
+ * Ez fogja tartalmazni a paklikat(mindig egy darab kártyát jelenít meg)
+ *@param {string} cssClass cssclass példányt tartalmazza
+ * @param {Manager} manager manager példányt tartalmazza
+*/
+    constructor(cssClass, manager){
+        super(cssClass, manager)
+        manager.setNextCardCallback((kartyaszoveg) =>{ //Ez fog lefutni amikor új kártyát húzunk tehát meghívjük a NextCard callbacket
+
+            this.div.innerHTML = ""
+
+            const skipButton =document.createElement('button')
+
+            skipButton.textContent = 'Skip'
+            skipButton.addEventListener('click', ()=>{
+                manager.nextCard()
+            })
+            this.div.appendChild(skipButton)
+            const cardElement = document.createElement("div")
+            cardElement.textContent = kartyaszoveg
+            cardElement.className = 'largecard'
+            cardElement.addEventListener('click', ()=>{
+                manager.nextCard(kartyaszoveg)
+            })
+            this.div.appendChild(cardElement)
+        } )
     }
 }
 /**
  * Ez tartalmazza az igaznak vélt kártyáinkat
  */
 class SolutionArea extends Area{
-    constructor(cssClass){
-        super(cssClass)
+   /**
+    * 
+    * @param {string} cssClass 
+    * @param {Manager} manager 
+    */
+    constructor(cssClass, manager){
+        super(cssClass, manager)
+        manager.setAppendCardToSolutionCallback((kartyaszoveg)=>{
+            const card = document.createElement('div')
+            card.className = 'card'
+            card.textContent = kartyaszoveg
+            this.div.appendChild(card)
+        })
     }
 }
+

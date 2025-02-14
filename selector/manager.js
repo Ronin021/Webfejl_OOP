@@ -90,7 +90,7 @@ class Manager {
 
         if(answer){// Ha a kártyára kattintva lépünk eltároljuk az aktuális választ
             this.#solution[this.#currentCardNumber] = answer
-        this.AppendCardToSolutionCallback(answer)
+        this.#appendCardToSolutionCallback(answer)
         //A soluton objektumba csak azon kártyák számánál 
         //lesz érték amit igaznak vélünk
 
