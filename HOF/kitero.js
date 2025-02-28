@@ -27,9 +27,24 @@ const fv3 = (op)=>{
 
         }
     }
+    if(op === '*2'){
+
+        const multi = 2
+        return (a,b)=>{
+            return multi*(a+b)
+        }
+
+    }
 }
 
 const fv4 = fv3('-')
 const res3 = fv4(5,7)
 
 console.log(res3)
+
+
+const res4=fv2(5,7,fv3('-'))
+console.log(res4)
+
+console.log(fv2(5,7, fv3('*2')))
+
