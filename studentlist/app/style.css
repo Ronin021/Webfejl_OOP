@@ -1,0 +1,31 @@
+.container{
+    display: flex;
+}
+
+.student-list{
+    width: 200px;
+    background-color: orange;
+    display: flex;
+    flex-direction: column;
+}
+
+.details{
+    background-color: lightblue;
+    width: 300px;
+}
+
+.student-card{
+    background-color: azure;
+    margin-bottom: 13px;
+    border-radius: 10px;
+    padding: 12px;
+
+}
+
+.student-card.selected{
+    background-color: aquamarine;
+}
+
+.student-card:hover{
+    cursor: pointer;
+}
